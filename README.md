@@ -21,11 +21,9 @@ $ make -C/lib/modules/$(uname -r)/build M=$(pwd) modules
 
 1. Install the kernel module
 $ sudo insmod bufmap.ko
-$ chmod 666 /dev/bufmap_misc
 
 1. Run the buftest.grc flowgraph
 
 1.Use journalctl to inspect the kernel messages
-
 
 

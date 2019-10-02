@@ -65,6 +65,7 @@ struct miscdevice bufmap_device = {
 	.minor = MISC_DYNAMIC_MINOR,
 	.name = "bufmap_misc",
 	.fops = &bufmap_fops,
+	.mode = 0666,
 };
 
 static int __init bufmap_init(void)
