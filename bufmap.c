@@ -29,6 +29,7 @@ static long unlocked_ioctl(struct file *filp,unsigned int cmd, unsigned long arg
 	struct page **pages;
 	long retval;
 	int i;
+	unsigned long vaddr;
 
 	pr_info("ioctl: number %d\n", cmd);
 
@@ -41,9 +42,11 @@ static long unlocked_ioctl(struct file *filp,unsigned int cmd, unsigned long arg
 
 	pr_info("Number of pages = %ld\n", retval);
 
+	vaddr=(unsigned long)buffer.addr;
 	for (i=0; i<retval; i++) {
 		pfn = page_to_pfn(pages[i]);
-		pr_info("Page %d, hwaddr=%lld\n", i, page_to_phys(pages[i]));
+		pr_info("Page %d, virtaddr=%lu, hwaddr=%lld\n", i, vaddr, page_to_phys(pages[i]));
+		vaddr = vaddr + 4096;
 	}
 	
 	kfree(pages);
